@@ -4,21 +4,72 @@
   "version": "1.0.0",
   "private": true,
   "author": "Sviatoslav Malyshevakyi",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/build.mjs && next build && yarn sitemap",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sitemap": "next-sitemap --config src/config/sitemap.js"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.3",
+    "@emotion/cache": "^11.10.5",
+    "@emotion/react": "^11.10.5",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/cousine": "^4.5.10",
+    "@fontsource/manrope": "^4.5.12",
+    "next": "13.0.6",
+    "next-seo": "^5.15.0",
+    "next-sitemap": "^3.1.32",
+    "nprogress": "^0.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.7.1",
+    "react-markdown": "^8.0.4",
+    "typescript": "4.9.4"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^13.0.6",
     "@types/node": "18.11.12",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
+    "copy": "^0.3.2",
     "eslint": "8.29.0",
+    "eslint-config-kdnj": "^2.0.4",
     "eslint-config-next": "13.0.6",
-    "next": "13.0.6",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "typescript": "4.9.4"
+    "favicons": "^7.0.2",
+    "path": "^0.12.7"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint-config-kdnj/react",
+      "plugin:@next/next/recommended"
+    ],
+    "ignorePatterns": [
+      ".next",
+      "generated",
+      "node_modules"
+    ],
+    "rules": {
+      "jsx-a11y/anchor-is-valid": "off"
+    },
+    "root": true
+  },
+  "lint-staged": {
+    "*.{json,md}": [
+      "prettier --write"
+    ],
+    "**/*.{js,cjs,mjs,jsx,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "prettier": {
+    "endOfLine": "auto",
+    "printWidth": 120,
+    "semi": true,
+    "singleQuote": false,
+    "trailingComma": "all"
   }
 }
